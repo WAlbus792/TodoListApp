@@ -1,0 +1,23 @@
+
+.order-box {
+    padding: 20px;
+    border-radius: 5px;
+    background: #fff url('../../../../assets/img/about-bg.png') no-repeat;
+    background-size: auto 100%;
+    -webkit-box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.1);
+
+    h6 {
+        font-size: 19px
+    }
+}
+
+b {
+    font-weight: bold !important;
+}
+
+.about-dialog .mat-dialog-container {
+    padding: 0 !important;
+    border-radius: 15px;
+}

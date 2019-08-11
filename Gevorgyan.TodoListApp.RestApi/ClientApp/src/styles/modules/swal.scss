@@ -1,0 +1,5 @@
+﻿/* Fix the swal components size on showing */
+body.m-page--fluid.swal2-height-auto {
+    overflow-y: hidden !important;
+    height: auto !important;
+}

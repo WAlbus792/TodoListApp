@@ -1,0 +1,28 @@
+<form #createUpdateForm="ngForm" class="m-form m-form--state">
+
+  <h4 class="app-modal-title">
+    <span *ngIf="!isEditing"><i class="fa fa-user-plus"></i> Todo-list adding</span>
+    <span *ngIf="isEditing"><i class="fa fa-pencil-alt"></i> Todo-list editing</span>
+  </h4>
+
+  <mat-dialog-content>
+    <div>
+      <mat-form-field class="full-width">
+        <input matInput [(ngModel)]="title" placeholder="Title" name="titleInput" type="text" required>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <div class="app-modal-footer">
+    <button type="button" class="btn btn-secondary m-btn m-btn--label-info" (click)="dialogRef.close()" [disabled]="isSaving">Cancel</button>
+    <button type="submit" class="btn btn-success m-btn" *ngIf="!isEditing" (click)="create()"
+            [disabled]="!createUpdateForm.form.valid || isSaving">
+      <span><i class="la la-save valign-text-top"></i> Add</span>
+    </button>
+    <button type="submit" class="btn btn-success m-btn" *ngIf="isEditing" (click)="update()"
+            [disabled]="!createUpdateForm.form.valid || isSaving || !isChanged">
+      <span><i class="la la-save valign-text-top"></i> Save</span>
+    </button>
+  </div>
+</form>
+

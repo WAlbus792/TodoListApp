@@ -1,0 +1,109 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.2" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
+    <PackageReference Include="NSwag.AspNetCore" Version="12.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Content Remove="$(SpaRoot)**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gevorgyan.TodoListApp.Application\Gevorgyan.TodoListApp.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientApp\src\app\core\dictionaries\TodoListItemState.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Domain\TodoListItemState.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\dictionaries\UserRole.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Domain\Helpers\UserRole.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\dictionaries\UserType.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Domain\Helpers\UserType.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\models\AuthenticateUserInputModel.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Application\Commands\Users\Models\AuthenticateUserInputModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\models\AuthenticateUserResultModel.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Application\Commands\Users\Models\AuthenticateUserResultModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\models\CreateUserInputModel.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Application\Commands\Users\Management\Models\CreateUserInputModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\models\TodoListInputModel.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Application\Commands\TodoLists\Management\Models\TodoListInputModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\models\TodoListItemInputModel.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Application\Commands\TodoLists\Management\Items\Models\TodoListItemInputModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\models\TodoListItemViewModel.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Application\Queries\TodoLists\Management\Models\TodoListItemViewModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\models\TodoListViewModel.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Application\Queries\TodoLists\Management\Models\TodoListViewModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\models\UpdateUserInputModel.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Application\Commands\Users\Management\Models\UpdateUserInputModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\models\UserViewModel.ts">
+      <CustomToolNamespace>..\Gevorgyan.TodoListApp.Application\Queries\Users\Management\Models\UserViewModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\service-proxies\AccountServiceProxy.ts">
+      <CustomToolNamespace>Controllers\AccountController.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\service-proxies\TodoListItemsServiceProxy.ts">
+      <CustomToolNamespace>Controllers\TodoListItemsController.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\service-proxies\TodoListsServiceProxy.ts">
+      <CustomToolNamespace>Controllers\TodoListsController.cs</CustomToolNamespace>
+    </None>
+    <None Update="ClientApp\src\app\core\service-proxies\UsersServiceProxy.ts">
+      <CustomToolNamespace>Controllers\UsersController.cs</CustomToolNamespace>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>

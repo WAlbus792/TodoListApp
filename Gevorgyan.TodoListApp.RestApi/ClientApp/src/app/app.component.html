@@ -1,0 +1,15 @@
+<!-- splash screen -->
+<div #splashScreen class="m-splash-screen">
+    <!--here we will have circle progress bar-->
+    <mat-spinner diameter="40"></mat-spinner>
+</div>
+
+<ng-template #blockTemplate>
+    <div class="block-ui-template block-ui">
+        <mat-spinner diameter="40"></mat-spinner>
+    </div>
+</ng-template>
+
+<block-ui [template]="blockTemplate" [delayStart]="300" style="display: flex; height: 100%; flex-direction: column;">
+    <router-outlet></router-outlet>
+</block-ui>

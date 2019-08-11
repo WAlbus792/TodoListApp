@@ -1,0 +1,14 @@
+﻿.block-ui {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    z-index: 99999;
+}
+
+.block-ui-wrapper {
+    background: rgba(0, 0, 0, 0.40) !important; /* make the background transparent in 40% (in original is 70%) */
+}

@@ -1,0 +1,32 @@
+.app-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 10px;
+}
+
+.app-modal-footer > :not(:first-child) {
+    margin-left: 0.5rem;
+}
+
+.app-modal-title {
+    margin-bottom: 20px;
+}
+
+.mat-form-field {
+    font-family: $main-font !important;
+}
+
+.m-mat-dialog-container__wrapper .mat-dialog-container {
+    padding: 0;
+    overflow-x: hidden;
+
+    .m-portlet {
+        margin-bottom: 0;
+    }
+
+    .alert {
+        border-radius: 0 !important;
+        width: 1032px;
+    }
+}

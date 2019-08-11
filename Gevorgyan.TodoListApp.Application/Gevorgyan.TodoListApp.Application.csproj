@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Attributes" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.8" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.5.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
+    <PackageReference Include="Telerik.UI.for.AspNet.Core" Version="2018.1.503" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gevorgyan.TodoListApp.Domain\Gevorgyan.TodoListApp.Domain.csproj" />
+    <ProjectReference Include="..\Gevorgyan.TodoListApp.Persistence\Gevorgyan.TodoListApp.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

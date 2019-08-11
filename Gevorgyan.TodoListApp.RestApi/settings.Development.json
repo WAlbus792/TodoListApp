@@ -1,0 +1,15 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "ConnectionStrings": {
+    "Default": "Server=(LocalDB)\\MSSQLLocalDB;Initial Catalog=RestApi_Dev;Trusted_Connection=True;"
+  },
+  "App": {
+    "ClientAppURL": "http://localhost:44301"
+  }
+}

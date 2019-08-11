@@ -1,0 +1,24 @@
+﻿.chat-link {
+    text-align: center;
+    line-height: 0;
+    vertical-align: middle;
+    padding: 0;
+    display: table-cell;
+    height: 100%;
+    width: 35px;
+    font-size: 1.4rem;
+}
+
+.chat-link > i:before {
+    background-color: #3598dc !important;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    padding: 1px;
+}
+
+.chat-link > i {
+    font-size: 1.5rem;
+}

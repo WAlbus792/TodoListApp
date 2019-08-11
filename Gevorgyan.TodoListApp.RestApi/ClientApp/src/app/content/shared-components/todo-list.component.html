@@ -1,0 +1,82 @@
+<m-portlet [options]="{headLarge: true}" *ngIf="isLoaded">
+  <ng-container mPortletHeadTitle>
+    <div class="m-subheader">
+      <div class="d-flex align-items-center">
+        <div class="mr-auto">
+          <h3 class="m-subheader__title m-subheader__title--separator">
+            Todo-list
+          </h3>
+          <ul class="m-subheader__breadcrumbs m-nav m-nav--inline m--visible-desktop-inline-block">
+            <li class="m-nav__item m-nav__item--home">
+              <a href="" class="m-nav__link m-nav__link--icon">
+                <i class="m-nav__link-icon la la-home"></i>
+              </a>
+            </li>
+            <li class="m-nav__separator">
+              →
+            </li>
+            <li class="m-nav__item">
+              <a href="" class="m-nav__link">
+                <span class="m-nav__link-text">
+                  Todo-list
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container mPortletHeadTools>
+    <button (click)="goToAdding()" mat-raised-button matTooltip="Add todo-list" class="btn-info" type="button">
+      <i class="fa fa-plus"></i> <span class="m--visible-desktop-inline-block ml-1"> Add todo-list</span>
+    </button>
+  </ng-container>
+  <ng-container mPortletBody>
+
+    <kendo-grid [data]="todoLists"
+                [pageSize]="state.take"
+                [skip]="state.skip"
+                [sort]="state.sort"
+                [filterable]="true"
+                [filter]="state.filter"
+                [resizable]="true"
+                [sortable]="true"
+                [pageable]="true"
+                [scrollable]="'scrollable'"
+                [loading]="isBlocked"
+                (dataStateChange)="dataStateChange($event)">
+      <kendo-grid-column title="Actions" width="120" class="actions-column">
+        <ng-template kendoGridCellTemplate let-entity>
+          <button [matMenuTriggerFor]="menu" mat-raised-button class="actions-btn">
+            <i class="fa fa-cog"></i> Actions <i class="fa fa-angle-down"></i>
+          </button>
+          <mat-menu #menu="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item (click)="goToEditing(entity)"><i class="la la-pencil"></i> Edit</button>
+            <button mat-menu-item (click)="remove(entity.id)"><i class="la la-trash"></i> Remove</button>
+          </mat-menu>
+        </ng-template>
+      </kendo-grid-column>
+
+      <!-- Title -->
+      <kendo-grid-column field="title" title="Title">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+            <kendo-filter-eq-operator></kendo-filter-eq-operator>
+            <kendo-filter-neq-operator></kendo-filter-neq-operator>
+            <kendo-filter-contains-operator></kendo-filter-contains-operator>
+            <kendo-filter-not-contains-operator></kendo-filter-not-contains-operator>
+            <kendo-filter-startswith-operator></kendo-filter-startswith-operator>
+            <kendo-filter-endswith-operator></kendo-filter-endswith-operator>
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+      </kendo-grid-column>
+
+      <!-- Items -->
+      <div *kendoGridDetailTemplate="let entity">
+        <todo-list-item-list [todo-list-id]="entity.id" [todo-list-user-email]="entity.userEmail"></todo-list-item-list>
+      </div>
+    </kendo-grid>
+  </ng-container>
+</m-portlet>

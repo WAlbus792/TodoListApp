@@ -1,0 +1,95 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "Gevorgyan.TodoListApp.RestApi": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
+            "assets": [
+              "src/assets",
+              "src/environments"
+            ],
+            "styles": [
+              "src/assets/vendors/base/vendors.bundle.css",
+              "src/assets/style.bundle.css",
+              "node_modules/@progress/kendo-theme-bootstrap/dist/all.css",
+              "src/styles/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/sweetalert2/dist/sweetalert2.min.css",
+              "node_modules/toastr/build/toastr.min.css"
+            ],
+            "scripts": [
+              "src/assets/vendors/base/vendors.bundle.js",
+              "src/assets/scripts.bundle.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/toastr/build/toastr.min.js"
+            ]
+          },
+          "configurations": {
+            "regular": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": []
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "Gevorgyan.TodoListApp.RestApi:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Gevorgyan.TodoListApp.RestApi:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "Gevorgyan.TodoListApp.RestApi:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "Gevorgyan.TodoListApp.RestApi",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "m",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "m"
+    }
+  }
+}

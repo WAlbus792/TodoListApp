@@ -1,0 +1,43 @@
+<form #createUpdateForm="ngForm" class="m-form m-form--state">
+
+  <h4 class="app-modal-title">
+    <span *ngIf="!isEditing"><i class="fa fa-user-plus"></i> User adding</span>
+    <span *ngIf="isEditing"><i class="fa fa-pencil-alt"></i> User editing</span>
+  </h4>
+
+  <mat-dialog-content>
+    <div>
+      <mat-form-field class="full-width">
+        <input matInput [(ngModel)]="name" placeholder="Name" name="nameInput" type="text" required>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="full-width">
+        <input matInput [(ngModel)]="email" placeholder="E-mail" name="emailInput" type="text" required>
+      </mat-form-field>
+    </div>
+    <div *ngIf="!isEditing">
+      <mat-form-field class="full-width">
+        <input matInput [(ngModel)]="password" placeholder="Password" name="passwordInput" type="password" autocomplete="off" maxlength="32" required>
+      </mat-form-field>
+    </div>
+    <div *ngIf="!isEditing">
+      <mat-form-field class="full-width">
+        <input matInput [(ngModel)]="passwordConfirmation" placeholder="Password confirmation" name="passwordConfirmationInput" type="password" autocomplete="off" maxlength="32" required>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <div class="app-modal-footer">
+    <button type="button" class="btn btn-secondary m-btn m-btn--label-info" (click)="dialogRef.close()" [disabled]="isSaving">Cancel</button>
+    <button type="submit" class="btn btn-success m-btn" *ngIf="!isEditing" (click)="create()"
+            [disabled]="!createUpdateForm.form.valid || isSaving">
+      <span><i class="la la-save valign-text-top"></i> Add</span>
+    </button>
+    <button type="submit" class="btn btn-success m-btn" *ngIf="isEditing" (click)="update()"
+            [disabled]="!createUpdateForm.form.valid || isSaving || !isChanged">
+      <span><i class="la la-save valign-text-top"></i> Save</span>
+    </button>
+  </div>
+</form>
+

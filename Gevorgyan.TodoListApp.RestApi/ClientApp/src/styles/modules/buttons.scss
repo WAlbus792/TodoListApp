@@ -1,0 +1,119 @@
+.btn {
+    font-family: $main-font !important;
+
+    &:disabled {
+        /* cursor for disabled buttons */
+        cursor: not-allowed;
+    }
+}
+
+.mat-button, .mat-fab, .mat-flat-button, .mat-icon-button, .mat-mini-fab, .mat-raised-button, .mat-stroked-button {
+    font-family: $main-font !important;
+}
+
+%actions-toolbox-btn-base {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    line-height: 1.44;
+    float: left;
+    text-decoration: none;
+    outline: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.18);
+    color: #ffffff;
+}
+
+.actions-btn {
+    @extend %actions-toolbox-btn-base;
+    font-size: 12px;
+    padding: 3px 8px 3px 8px;
+}
+
+
+.dropdown-scroll .dropdown-menu {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.toolbox-btn {
+    @extend %actions-toolbox-btn-base;
+    font-size: 12px;
+    padding: 8px 14px 7px 14px;
+}
+
+.actions-btn,
+.toolbox-btn-blue {
+    background-color: #3598dc !important;
+    border-color: #3598dc;
+    color: #ffffff !important;
+    font-size: 12px !important;
+    font-family: "Open Sans", sans-serif !important;
+    font-weight: 600 !important;
+    padding: 3px 8px 3px 8px !important;
+    height: 23px !important;
+    line-height: 1.44 !important;
+
+    &:hover {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.26);
+        color: #ffffff;
+        background-color: #217ebd;
+        border-color: #1f78b5;
+    }
+
+    &:focus {
+        background-color: #217ebd;
+        border-color: #1f78b5;
+    }
+
+    .fa {
+        font-size: 11px !important;
+        font-weight: 600;
+    }
+}
+
+.toolbox-btn-red {
+    background-color: #e7505a;
+    border-color: #e7505a;
+
+    &:hover {
+        background-color: #e12330;
+        border-color: #dc1e2b;
+    }
+
+    &:focus {
+        background-color: #e12330;
+        border-color: #a1161f;
+    }
+}
+
+.toolbox-btn-green {
+    background-color: #32c5d2;
+    border-color: #32c5d2;
+
+    &:hover {
+        background-color: #26a1ab;
+        border-color: #2499a3;
+    }
+
+    &:focus {
+        background-color: #26a1ab;
+        border-color: #18666d;
+    }
+}
+
+.m-btn--label-info {
+    color: #36a3f7 !important;
+
+    &:hover {
+        color: #36a3f7 !important;
+    }
+
+    &:focus {
+        color: #36a3f7 !important;
+    }
+}

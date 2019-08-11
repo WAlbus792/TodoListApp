@@ -1,0 +1,46 @@
+.m-portlet.m-portlet--creative
+.m-portlet__head
+.m-portlet__head-caption
+.m-portlet__head-label.m-portlet__head-label--info {
+    background: #3598dc !important;
+}
+
+/* Changes the color of background and shadow for portlet to be normally visible in white lines of grid */
+.m-portlet {
+    box-shadow: 0 1px 15px 1px rgba(15, 15, 16, 0.08) !important;
+    background-color: #fbfafa !important;
+}
+
+.m-portlet
+.m-portlet__head
+.m-portlet__head-caption
+.m-portlet__head-title
+.m-portlet__head-text {
+    font-family: $main-font !important;
+    color: #666667 !important;
+}
+
+.m-portlet-mx-0 {
+    margin: -1.1rem -2.2rem 0;
+    overflow-x: hidden;
+}
+
+.m-portlet.m-portlet--head-lg .m-portlet__head {
+    height: 5rem !important;
+}
+
+.m-portlet .m-portlet__small-body {
+    padding: 0.5rem 0.5rem;
+}
+
+.m-portlet .m-portlet__inner .m-portlet__body {
+    padding: 0;
+}
+
+.m-portlet.m-portlet--tabs .m-portlet__head .m-portlet__head-tools {
+    align-items: center !important;
+}
+
+.m-portlet .m-portlet__without_head .m-portlet__head {
+    height: 0rem !important;
+}

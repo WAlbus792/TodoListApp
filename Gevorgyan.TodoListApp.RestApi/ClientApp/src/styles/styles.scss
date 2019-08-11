@@ -1,0 +1,19 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'modules/material-icons.scss';
+
+@import "base/variables";
+@import "base/base";
+@import "base/layout";
+
+@import "modules/buttons";
+@import "modules/k-grid";
+@import "modules/dialogs";
+@import "modules/m-portlet";
+@import "modules/m-breadcrumbs";
+@import "modules/m-subheader";
+@import "modules/block-ui";
+@import "modules/mat-spinner";
+@import "modules/swal";
+@import "modules/mat-tab";
+@import "modules/reset-all-styles";
+@import "modules/rate";

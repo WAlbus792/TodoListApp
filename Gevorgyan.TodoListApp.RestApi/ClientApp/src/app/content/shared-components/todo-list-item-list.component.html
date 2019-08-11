@@ -1,0 +1,63 @@
+<m-portlet [options]="{headLarge: true}" *ngIf="isLoaded">
+  <ng-container mPortletHeadTools>
+    <button (click)="goToAdding()" mat-raised-button matTooltip="Add todo-list item" class="btn-info" type="button" *ngIf="isTodoListBelongToCurrentUser">
+      <i class="fa fa-plus"></i> <span class="m--visible-desktop-inline-block ml-1"> Add todo-list item</span>
+    </button>
+  </ng-container>
+  <ng-container mPortletBody>
+
+    <kendo-grid [data]="todoListItems"
+                [pageSize]="state.take"
+                [skip]="state.skip"
+                [sort]="state.sort"
+                [filterable]="true"
+                [filter]="state.filter"
+                [resizable]="true"
+                [sortable]="true"
+                [pageable]="true"
+                [scrollable]="'scrollable'"
+                [loading]="isBlocked"
+                (dataStateChange)="dataStateChange($event)">
+      <kendo-grid-column title="Actions" width="120" class="actions-column">
+        <ng-template kendoGridCellTemplate let-entity>
+          <button [matMenuTriggerFor]="menu" mat-raised-button class="actions-btn">
+            <i class="fa fa-cog"></i> Actions <i class="fa fa-angle-down"></i>
+          </button>
+          <mat-menu #menu="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item (click)="goToEditing(entity)"><i class="la la-pencil"></i> Edit</button>
+            <button mat-menu-item (click)="remove(entity.id)"><i class="la la-trash"></i> Remove</button>
+          </mat-menu>
+        </ng-template>
+      </kendo-grid-column>
+
+      <!-- Title -->
+      <kendo-grid-column field="title" title="Title">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [column]="column" [filter]="filter">
+            <kendo-filter-eq-operator></kendo-filter-eq-operator>
+            <kendo-filter-neq-operator></kendo-filter-neq-operator>
+            <kendo-filter-contains-operator></kendo-filter-contains-operator>
+            <kendo-filter-not-contains-operator></kendo-filter-not-contains-operator>
+            <kendo-filter-startswith-operator></kendo-filter-startswith-operator>
+            <kendo-filter-endswith-operator></kendo-filter-endswith-operator>
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+      </kendo-grid-column>
+
+      <!-- State -->
+      <kendo-grid-column field="state" title="State" width="200">
+        <ng-template kendoGridCellTemplate let-entity>
+          {{ getStateNameByKey(entity.state) }}
+        </ng-template>
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <dropdown-filter [filter]="filter"
+                           [data]="allTodoListItemStates"
+                           textField="name"
+                           valueField="key"
+                           filterValue="state">
+          </dropdown-filter>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </ng-container>
+</m-portlet>
